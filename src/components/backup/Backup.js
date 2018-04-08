@@ -20,6 +20,9 @@ class Backup extends Component {
         super(props);
     }
 
+    gotoConfirmation(){
+        this.props.navigation.navigate('Confirmation');
+    }
 
     render() {
         return (
@@ -36,7 +39,7 @@ class Backup extends Component {
                 </View>
 
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.gotoConfirmation()}>
                         <Text style={{color: 'white', fontWeight: 'bold'}}>I've written it down</Text>
                     </TouchableOpacity>
                 </View>
@@ -70,7 +73,8 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 20,
         marginLeft: 40,
-        marginRight: 50
+        marginRight: 40,
+       
     },
     title: {
         fontWeight: 'bold',

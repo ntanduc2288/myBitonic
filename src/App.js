@@ -4,6 +4,7 @@ import Home from './components/home/Home';
 import Backup from './components/backup/Backup';
 import { Provider } from 'react-redux';
 import Store from './redux/Store';
+import Confirmation from './components/confirmation/Confirmation';
 
 const RootStack = StackNavigator(
     {
@@ -13,10 +14,13 @@ const RootStack = StackNavigator(
         Backup: {
             screen: Backup
         },
+        Confirmation: {
+            screen: Confirmation
+        }
         
     },
     {
-        initialRouteName: 'Backup',
+        initialRouteName: 'Confirmation',
     }
 )
 
