@@ -11,10 +11,13 @@ class ItemSelected extends Component {
     state = {}
 
     clickedOnItem(index){
-        this.props.dispatch({
-            type: "TOUCH_ON_SELECTED_ITEM",
-            index: index
-        })
+        if(this.props.item.id !== ""){
+            this.props.dispatch({
+                type: "TOUCH_ON_SELECTED_ITEM",
+                index: index
+            })
+        }
+        
     }
 
     getBackground(isSelected){
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     chileContainer: {
-        height: 35,
+        height: 50,
         flexDirection: 'row',
 
         alignItems: 'center',
