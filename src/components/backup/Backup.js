@@ -9,12 +9,7 @@ import {
 import { connect } from 'react-redux';
 import ItemBackup from './ItemBackup';
 
-
 class Backup extends Component {
-
-    static navigationOptions = {
-        title: 'Backup',
-    }
 
     constructor(props) {
         super(props);

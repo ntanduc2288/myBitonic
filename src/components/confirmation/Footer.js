@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 class Footer extends Component {
 
     render() {
-        const bottomView = (this.props.isDone) ? this.doneView() : this.announceView();
+        const bottomView = (!this.props.isDone) ? this.doneView() : this.announceView();
         return (
             <View style={styles.container}>
                 {bottomView}

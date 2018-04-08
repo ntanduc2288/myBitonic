@@ -10,9 +10,7 @@ import {
 class Home extends Component {
     state = {}
 
-    static navigationOptions = {
-        title: 'Home',
-    }
+   
 
     constructor(props) {
         super(props)

@@ -9,18 +9,27 @@ import Confirmation from './components/confirmation/Confirmation';
 const RootStack = StackNavigator(
     {
         Home: {
-            screen: Home
+            screen: Home,
+            navigationOptions: {
+                title: "Home"
+            }
         },
         Backup: {
-            screen: Backup
+            screen: Backup,
+            navigationOptions: {
+                title: "Backup"
+            }
         },
         Confirmation: {
-            screen: Confirmation
+            screen: Confirmation,
+            navigationOptions: {
+                title: "Confirmation"
+            }
         }
         
     },
     {
-        initialRouteName: 'Confirmation',
+        initialRouteName: 'Home',
     }
 )
 

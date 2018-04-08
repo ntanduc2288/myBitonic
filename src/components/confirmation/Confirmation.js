@@ -11,10 +11,7 @@ import SelectionList from './selectionList/SelectionList';
 import Footer from './Footer';
 
 class Confirmation extends Component {
-    static navigationOptions = {
-        title: 'Confirmation',
-    }
-
+    
     render() {
         return (
             <View style={styles.container}>
