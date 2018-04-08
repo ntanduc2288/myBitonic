@@ -10,10 +10,14 @@ import ItemSelected from './ItemSelected';
 class SelectedList extends Component {
     state = {}
     render() {
+        const myList = this.props.mySelectedList;
+        myList.forEach(e => {
+            console.log(e.index)
+        })
         return (
             <View style={styles.container}>
                 <FlatList
-                    data={this.props.mySelectedList}
+                    data={myList}
                     renderItem={({ item, index }) => <ItemSelected item={item} index={index} />}
                     keyExtractor={item => item.index.toString()}
 
@@ -24,6 +28,7 @@ class SelectedList extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log("DUC: mapStateToProps() " )
     return {
         mySelectedList: state.selectedList,
     }

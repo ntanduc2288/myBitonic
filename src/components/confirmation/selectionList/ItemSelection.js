@@ -8,11 +8,19 @@ import {
 import { connect } from 'react-redux';
 
 class ItemSelection extends Component {
+
+    clickedOnItem(item){
+        this.props.dispatch({
+            type: "TOUCH_ON_SELECTION_ITEM",
+            value: item,
+        })
+    }
+
     render() {
-        const { id, name } = this.props.item;
+        const item = this.props.item;
         return (
-            <TouchableOpacity style={styles.container}>
-                <Text style={{color: 'white', fontWeight: 'bold'}}>{name}</Text>
+            <TouchableOpacity style={styles.container} onPress={() => this.clickedOnItem(item)}>
+                <Text style={{color: 'white', fontWeight: 'bold'}}>{item.name}</Text>
             </TouchableOpacity>
         );
     }

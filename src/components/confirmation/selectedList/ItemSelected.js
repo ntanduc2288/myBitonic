@@ -9,16 +9,29 @@ import { connect } from 'react-redux';
 
 class ItemSelected extends Component {
     state = {}
+
+    clickedOnItem(index){
+        this.props.dispatch({
+            type: "TOUCH_ON_SELECTED_ITEM",
+            index: index
+        })
+    }
+
+    getBackground(isSelected){
+        if(isSelected) return {backgroundColor: 'lightgray'};
+
+        return {backgroundColor: 'white'};
+    }
+
     render() {
         const { item } = this.props;
-        const index = this.props.index;
         return (
-            <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.container} onPress={() => this.clickedOnItem(item.index)}>
                 <View>
-                    <View style={styles.chileContainer}>
-                        <Text style={styles.generalText}>{index}. </Text>
+                    <View style={[styles.chileContainer, this.getBackground(item.isSelected)]}>
+                        <Text style={styles.generalText}>{item.index}. </Text>
 
-                        <Text style={[styles.generalText, { fontWeight: 'bold' }]}>ABC</Text>
+                        <Text style={[styles.generalText, { fontWeight: 'bold' }]}>{item.name}</Text>
                     </View>
 
                     <View style={{backgroundColor:'lightgray', height: 1}}/>
@@ -28,7 +41,7 @@ class ItemSelected extends Component {
     }
 }
 
-export default ItemSelected;
+export default connect()(ItemSelected);
 
 const styles = StyleSheet.create({
     container: {
