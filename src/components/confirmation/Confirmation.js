@@ -9,23 +9,36 @@ import {
 import SelectedList from './selectedList/SelectedList';
 import SelectionList from './selectionList/SelectionList';
 import Footer from './Footer';
+import { NavigationActions } from 'react-navigation';
+
+const resetAction = NavigationActions.reset({
+    index: 0,
+    actions: [
+        NavigationActions.navigate({ routeName: 'Home' })
+    ]
+})
 
 class Confirmation extends Component {
-    
+
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Backup wallet</Text>
                 <View style={styles.choosenList}>
-                    <SelectedList/>
-                    <SelectionList/>
+                    <SelectedList />
+                    <SelectionList />
                 </View>
 
-                <Footer/>
+                <Footer doneClicked={() => this.backToHomeScreen()} />
             </View>
         );
     }
+
+    backToHomeScreen() {
+        this.props.navigation.dispatch(resetAction);
+    }
 }
+
 
 export default Confirmation;
 
@@ -42,7 +55,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue'
     },
     title: {
-        padding:10,
+        padding: 10,
         fontWeight: 'bold',
         fontSize: 30
     },

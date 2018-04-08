@@ -10,16 +10,12 @@ import { connect } from 'react-redux';
 class Footer extends Component {
 
     render() {
-        const bottomView = (!this.props.isDone) ? this.doneView() : this.announceView();
+        const bottomView = (this.props.isDone) ? this.doneView() : this.announceView();
         return (
             <View style={styles.container}>
                 {bottomView}
             </View>
         );
-    }
-
-    clickedDone(){
-
     }
 
     announceView() {
@@ -30,7 +26,7 @@ class Footer extends Component {
 
     doneView() {
         return (
-            <TouchableOpacity style={styles.doneStyle} onPress={() => this.clickedDone()}>
+            <TouchableOpacity style={styles.doneStyle} onPress={this.props.doneClicked}>
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Done</Text>
             </TouchableOpacity>
         )

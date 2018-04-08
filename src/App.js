@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import Store from './redux/Store';
 import Confirmation from './components/confirmation/Confirmation';
 
-const RootStack = StackNavigator(
+const AppStack = StackNavigator(
     {
         Home: {
             screen: Home,
@@ -20,13 +20,13 @@ const RootStack = StackNavigator(
                 title: "Backup"
             }
         },
+
         Confirmation: {
             screen: Confirmation,
             navigationOptions: {
                 title: "Confirmation"
             }
-        }
-        
+        },
     },
     {
         initialRouteName: 'Home',
@@ -38,7 +38,7 @@ class BitnoicApp extends Component {
 
         return (
             <Provider store={Store}>
-                <RootStack />
+                <AppStack />
             </Provider>
         );
     }

@@ -1,4 +1,3 @@
-// import { wordList } from '../constants/Constants';
 import Constants from '../constants/Constants';
 import { initSelectionList, initSelectedList, initItemSelected, initPickedSelectionItem } from '../utils/Utils';
 
