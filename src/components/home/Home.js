@@ -26,7 +26,6 @@ class Home extends Component {
     render() {
         return (
             <View>
-                <Text>Home</Text>
                 <Button onPress={this.goToBackupScreen} title="Go to backup screen" />
             </View>
         );

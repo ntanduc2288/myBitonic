@@ -32,7 +32,7 @@ class ItemSelected extends Component {
             <TouchableOpacity style={styles.container} onPress={() => this.clickedOnItem(item.index)}>
                 <View>
                     <View style={[styles.chileContainer, this.getBackground(item.isSelected)]}>
-                        <Text style={styles.generalText}>{item.index}. </Text>
+                        <Text style={styles.generalText}>{item.index + 1}. </Text>
 
                         <Text style={[styles.generalText, { fontWeight: 'bold' }]}>{item.name}</Text>
                     </View>

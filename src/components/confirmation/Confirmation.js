@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import SelectedList from './selectedList/SelectedList';
 import SelectionList from './selectionList/SelectionList';
+import Footer from './Footer';
 
 class Confirmation extends Component {
     static navigationOptions = {
@@ -23,9 +24,7 @@ class Confirmation extends Component {
                     <SelectionList/>
                 </View>
 
-                <View style={styles.bottom}>
-
-                </View>
+                <Footer/>
             </View>
         );
     }
@@ -42,11 +41,11 @@ const styles = StyleSheet.create({
     choosenList: {
         flex: 1,
         flexDirection: 'row',
-        marginTop: 10,
         marginLeft: 10,
         backgroundColor: 'lightblue'
     },
     title: {
+        padding:10,
         fontWeight: 'bold',
         fontSize: 30
     },

@@ -15,8 +15,6 @@ export const initSelectionList = (originalList) => {
         });
 
         Array.prototype.push.apply(newList, childList);
-
-        console.log("DUC: size: " + childList.length + "   " + newList.length)
     });
     return newList;
 }
@@ -29,7 +27,7 @@ export const initSelectedList = (originalList) => {
             isSelectedTmp = true;
         }
         let item = {
-            index: element.id,
+            index: element.id - 1,
             id: "",
             name: "",
             isSelected: isSelectedTmp,
