@@ -1,4 +1,4 @@
-export const wordList = [
+const wordList = [
     {
         id: 1,
         name: "witch"
@@ -48,3 +48,9 @@ export const wordList = [
         name: "least"
     },
 ]
+
+export default {
+    wordList: wordList,
+    TOUCH_ON_SELECTED_ITEM: 'TOUCH_ON_SELECTED_ITEM',
+    TOUCH_ON_SELECTION_ITEM: 'TOUCH_ON_SELECTION_ITEM',
+}

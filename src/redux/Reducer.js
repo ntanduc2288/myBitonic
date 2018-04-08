@@ -1,12 +1,13 @@
-import { wordList } from '../constants/Constants';
+// import { wordList } from '../constants/Constants';
+import Constants from '../constants/Constants';
 import { initSelectionList, initSelectedList, initItemSelected, initPickedSelectionItem } from '../utils/Utils';
 
 
-const selectedList = initSelectedList(wordList);
-const selectionList = initSelectionList(wordList);
+const selectedList = initSelectedList(Constants.wordList);
+const selectionList = initSelectionList(Constants.wordList);
 
 const defaultState = {
-    wordList,
+    wordList: Constants.wordList,
     selectionList,
     selectedList,
     initItemSelected,
@@ -17,13 +18,13 @@ const defaultState = {
 
 const Reducer = (state = defaultState, action) => {
     switch (action.type) {
-        case "TOUCH_ON_SELECTED_ITEM":
+        case Constants.TOUCH_ON_SELECTED_ITEM:
             return {
                 ...state,
                 selectedList: getNewSelectedList1(state.selectedList, action.index),
                 currentIndexSelected: action.index,
             };
-        case "TOUCH_ON_SELECTION_ITEM":
+        case Constants.TOUCH_ON_SELECTION_ITEM:
             return handleTouchOnSelectionItem(state, action.value);
     }
     return state;
@@ -69,8 +70,8 @@ function handleTouchOnSelectionItem(state, item) {
     const newList = getNewSelectedList2(state.selectedList, item);
     let isEqual = true;
     let currentIndexSelected = 0;
-    for (let i = 0; i < wordList.length; i++) {
-        if (newList[i].id !== wordList[i].id) {
+    for (let i = 0; i < Constants.wordList.length; i++) {
+        if (newList[i].id !== Constants.wordList[i].id) {
             isEqual = false;
         }
 

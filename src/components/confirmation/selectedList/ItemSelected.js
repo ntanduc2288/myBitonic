@@ -12,7 +12,7 @@ class ItemSelected extends Component {
     state = {}
 
     clickedOnItem(index){
-        if(this.props.item.id === ""){
+        if(this.props.item.id !== ""){
             this.props.touchOnSelectedItem(index);
         }
         
