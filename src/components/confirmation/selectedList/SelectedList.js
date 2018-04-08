@@ -20,9 +20,7 @@ class SelectedList extends Component {
     }
     render() {
         const myList = this.props.mySelectedList;
-        myList.forEach(e => {
-            console.log(e.index)
-        })
+
         return (
             <View style={styles.container}>
                 <FlatList

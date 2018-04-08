@@ -6,16 +6,14 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { touchOnSelectedItem } from '../../../redux/Actions';
 
 class ItemSelected extends Component {
     state = {}
 
     clickedOnItem(index){
-        if(this.props.item.id !== ""){
-            this.props.dispatch({
-                type: "TOUCH_ON_SELECTED_ITEM",
-                index: index
-            })
+        if(this.props.item.id === ""){
+            this.props.touchOnSelectedItem(index);
         }
         
     }
@@ -44,7 +42,7 @@ class ItemSelected extends Component {
     }
 }
 
-export default connect()(ItemSelected);
+export default connect(null, {touchOnSelectedItem})(ItemSelected);
 
 const styles = StyleSheet.create({
     container: {
