@@ -7,31 +7,47 @@ export const initSelectionList = (originalList) => {
         count++;
         let item2 = initializeSelectionItem(count, getRandomName(element.name));
 
-        let childList = [];
-        childList.push(item1);
-        childList.push(item2);
-        childList.sort(function (a, b) {
-            return a.name > b.name;
-        });
+        // let childList = [];
+        // childList.push(item1);
+        // childList.push(item2);
+        // childList.sort(function (a, b) {
+        //     return a.name > b.name;
+        // });
 
-        Array.prototype.push.apply(newList, childList);
+        // Array.prototype.push.apply(newList, childList);
+
+        newList.push(item1);
+        newList.push(item2);
     });
+
+    newList.sort((a, b) => {
+        return a.name > b.name;
+    })
     return newList;
 }
 
 export const initSelectedList = (originalList) => {
     let newList = [];
     originalList.forEach(element => {
-        let isSelectedTmp = false;
+        let item = {};
         if (element.id === 1) {
-            isSelectedTmp = true;
+            item = {
+                index: element.id - 1,
+                id: element.id,
+                name: element.name,
+                isSelected: false,
+            }
+        }else {
+            let isSelectedTmp = false;
+            if(element.id === 2) isSelectedTmp = true;
+            item = {
+                index: element.id - 1,
+                id: "",
+                name: "",
+                isSelected: isSelectedTmp,
+            }
         }
-        let item = {
-            index: element.id - 1,
-            id: "",
-            name: "",
-            isSelected: isSelectedTmp,
-        }
+        
         newList.push(item);
     });
 
