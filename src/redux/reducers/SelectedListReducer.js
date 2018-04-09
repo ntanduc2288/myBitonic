@@ -1,12 +1,12 @@
-import Constants from '../constants/Constants';
-import { initSelectionList, initSelectedList, initItemSelected, initPickedSelectionItem } from '../utils/Utils';
+import Constants from '../../constants/Constants';
+import { initSelectionList, initSelectedList, initItemSelected, initPickedSelectionItem } from '../../utils/Utils';
 
 
 const selectedList = initSelectedList(Constants.wordList);
 const selectionList = initSelectionList(Constants.wordList);
 
-const defaultState = {
-    wordList: Constants.wordList,
+//////DEFAULT SELECTED LIST REDUCER
+const defaultSelectedListState = {
     selectionList,
     selectedList,
     initItemSelected,
@@ -15,12 +15,12 @@ const defaultState = {
     currentIndexSelected: 0,
 }
 
-const Reducer = (state = defaultState, action) => {
+const Reducer = (state = defaultSelectedListState, action) =>{
     switch (action.type) {
         case Constants.TOUCH_ON_SELECTED_ITEM:
             return {
                 ...state,
-                selectedList: getNewSelectedList1(state.selectedList, action.index),
+                selectedList: getNewSelectedList(state.selectedList, action.index),
                 currentIndexSelected: action.index,
             };
         case Constants.TOUCH_ON_SELECTION_ITEM:
@@ -29,8 +29,11 @@ const Reducer = (state = defaultState, action) => {
     return state;
 }
 
+
+export default Reducer;
+
 //This function is used for "TOUCH_ON_SELECTED_ITEM" case
-function getNewSelectedList1(currentList, clickedIndex) {
+function getNewSelectedList(currentList, clickedIndex) {
     let newList = currentList.map(e => {
         if (e.index === clickedIndex && e.id !== "") {
             e = { ...e, isSelected: !e.isSelected }
@@ -44,7 +47,7 @@ function getNewSelectedList1(currentList, clickedIndex) {
 }
 
 //This function is used for "TOUCH_ON_SELECTION_ITEM" case
-function getNewSelectedList2(currentList, item) {
+function getNewSelectedList(currentList, item) {
     let alreadyJumped = false;
     let newList = currentList
         //update value for current item selected
@@ -66,7 +69,7 @@ function getNewSelectedList2(currentList, item) {
 }
 
 function handleTouchOnSelectionItem(state, item) {
-    const newList = getNewSelectedList2(state.selectedList, item);
+    const newList = getNewSelectedList(state.selectedList, item);
     let isEqual = true;
     let currentIndexSelected = 0;
     for (let i = 0; i < Constants.wordList.length; i++) {
@@ -78,14 +81,14 @@ function handleTouchOnSelectionItem(state, item) {
             currentIndexSelected = i;
         }
     }
+    
     return {
         ...state,
         selectedList: newList,
         isDone: isEqual,
-        currentIndexSelected
+        currentIndexSelected: currentIndexSelected
     }
 }
 
-export default Reducer;
 
 

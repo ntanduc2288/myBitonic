@@ -1,4 +1,5 @@
 export const initSelectionList = (originalList) => {
+    console.log("DUC: initSelectionList")
     let newList = [];
     let count = originalList.length;
 

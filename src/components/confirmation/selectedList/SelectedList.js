@@ -57,8 +57,8 @@ class SelectedList extends Component {
 
 function mapStateToProps(state) {
     return {
-        mySelectedList: state.selectedList,
-        currentSelectedIndex: state.currentIndexSelected
+        mySelectedList: state.selectedListReducer.selectedList,
+        currentSelectedIndex: state.selectedListReducer.currentIndexSelected
     }
 }
 

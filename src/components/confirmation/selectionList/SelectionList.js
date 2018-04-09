@@ -26,7 +26,7 @@ class SelectionList extends Component {
 
 function mapStateToProps(state){
     return {
-        mySelectionList: state.selectionList,
+        mySelectionList: state.selectedListReducer.selectionList,
     }
 }
 export default connect(mapStateToProps)(SelectionList);

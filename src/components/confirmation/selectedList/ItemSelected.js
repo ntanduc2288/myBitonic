@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     chileContainer: {
-        height: 50,
+        height: 120,
         flexDirection: 'row',
 
         alignItems: 'center',

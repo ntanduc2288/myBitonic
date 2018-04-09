@@ -35,7 +35,7 @@ class Footer extends Component {
 
 function mapStateToProps(state){
     return {
-        isDone: state.isDone,
+        isDone: state.selectedListReducer.isDone,
     }
 }
 

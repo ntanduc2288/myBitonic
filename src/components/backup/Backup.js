@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import ItemBackup from './ItemBackup';
+import Constants from '../../constants/Constants';
 
 class Backup extends Component {
 
@@ -50,7 +51,7 @@ class Backup extends Component {
 
 function mapStateToProps(state) {
     return {
-        myWordList: state.wordList
+        myWordList: state.wordListReducer,
     }
 }
 
