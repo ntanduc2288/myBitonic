@@ -1,13 +1,11 @@
 import Constants from '../../constants/Constants';
-import { initSelectionList, initSelectedList, initItemSelected, initPickedSelectionItem } from '../../utils/Utils';
+import { initSelectedList, initItemSelected, initPickedSelectionItem } from '../../utils/Utils';
 
 
 const selectedList = initSelectedList(Constants.wordList);
-const selectionList = initSelectionList(Constants.wordList);
 
 //////DEFAULT SELECTED LIST REDUCER
 const defaultSelectedListState = {
-    selectionList,
     selectedList,
     initItemSelected,
     initPickedSelectionItem,

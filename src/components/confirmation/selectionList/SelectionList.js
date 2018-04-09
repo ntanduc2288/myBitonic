@@ -7,20 +7,43 @@ import {
 import { connect } from 'react-redux';
 import ItemSelection from './ItemSelection';
 import ItemBackup from '../../backup/ItemBackup';
+import { initSelectionList } from '../../../utils/Utils';
+import Constants from '../../../constants/Constants';
+
 class SelectionList extends Component {
-    state = {  }
+    
+    constructor(props){
+        super(props);
+
+        this.state = {
+            selectionList: [],
+        }
+    }
+
     render() {
+        const selectionList = this.state.selectionList;
         return (
             <View style={styles.container}>
                 <FlatList
-                        data={this.props.mySelectionList}
-                        
+                        data={selectionList}
+                    
                         renderItem={({ item }) => <ItemSelection item={item} />}
                         keyExtractor={item => item.id.toString()}
                         
                     />
             </View>
         );
+    }
+
+    componentDidMount(){
+        this.generateSelectionList();
+    }
+
+    generateSelectionList(){
+        const selectionList = initSelectionList(Constants.wordList);
+        this.setState({
+            selectionList
+        })
     }
 }
 

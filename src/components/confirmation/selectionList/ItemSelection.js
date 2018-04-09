@@ -18,6 +18,7 @@ class ItemSelection extends Component {
             </TouchableOpacity>
         );
     }
+
 }
 
 export default connect(null, {touchOnSelectionItem})(ItemSelection);
