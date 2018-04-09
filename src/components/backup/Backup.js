@@ -21,13 +21,14 @@ class Backup extends Component {
     }
 
     render() {
+        const wordList = Constants.wordList;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Backup wallet</Text>
                 <Text style={{marginTop: 10, color:'gray'}}>{description}</Text>
                 <View style={styles.listContainer}>
                     <FlatList
-                        data={this.props.myWordList}
+                        data={wordList}
                         renderItem={({ item }) => <ItemBackup item={item} />}
                         keyExtractor={item => item.id.toString()}
                         numColumns='2'
@@ -47,15 +48,7 @@ class Backup extends Component {
 
 }
 
-
-
-function mapStateToProps(state) {
-    return {
-        myWordList: state.wordListReducer,
-    }
-}
-
-export default connect(mapStateToProps)(Backup);
+export default Backup;
 
 const description = "Please carefully write down this words. We will check correctness of your backup on the next screen.";
 

@@ -13,16 +13,12 @@ const defaultSelectedListState = {
     currentIndexSelected: 0,
 }
 
-const Reducer = (state = defaultSelectedListState, action) =>{
+const Reducer = (state = defaultSelectedListState, action) => {
     switch (action.type) {
         case Constants.TOUCH_ON_SELECTED_ITEM:
-            return {
-                ...state,
-                selectedList: getNewSelectedList(state.selectedList, action.index),
-                currentIndexSelected: action.index,
-            };
+            return getNewStateFromSelectedItem(state, action.index);
         case Constants.TOUCH_ON_SELECTION_ITEM:
-            return handleTouchOnSelectionItem(state, action.value);
+            return getNewStateFromSelectionItem(state, action.value);
     }
     return state;
 }
@@ -30,18 +26,49 @@ const Reducer = (state = defaultSelectedListState, action) =>{
 
 export default Reducer;
 
-//This function is used for "TOUCH_ON_SELECTED_ITEM" case
-function getNewSelectedList(currentList, clickedIndex) {
-    let newList = currentList.map(e => {
+
+//Get new state when touch on selected item
+function getNewStateFromSelectedItem(state, clickedIndex) {
+    let newList = state.selectedList.map(e => {
         if (e.index === clickedIndex && e.id !== "") {
-            e = { ...e, isSelected: !e.isSelected }
-        } else {
+            if(!e.isSelected){
+                e = { ...e, isSelected: !e.isSelected }
+            }
+        }
+        else {
             e = { ...e, isSelected: false };
         }
         return e;
     });
 
-    return newList;
+    return {
+        ...state,
+        selectedList: newList,
+        currentIndexSelected: clickedIndex,
+    };
+}
+
+//Get new state when touch on selection item
+function getNewStateFromSelectionItem(state, item) {
+    const newList = getNewSelectedList(state.selectedList, item);
+    let isEqual = true;
+    let currentIndexSelected = 0;
+    for (let i = 0; i < Constants.wordList.length; i++) {
+        if (newList[i].id !== Constants.wordList[i].id) {
+            isEqual = false;
+        }
+
+        if (newList[i].isSelected) {
+            currentIndexSelected = i;
+        }
+    }
+
+    return {
+        ...state,
+        selectedList: newList,
+        isDone: isEqual,
+        currentIndexSelected: currentIndexSelected
+    }
 }
 
 //This function is used for "TOUCH_ON_SELECTION_ITEM" case
@@ -64,28 +91,6 @@ function getNewSelectedList(currentList, item) {
             return element;
         });
     return newList;
-}
-
-function handleTouchOnSelectionItem(state, item) {
-    const newList = getNewSelectedList(state.selectedList, item);
-    let isEqual = true;
-    let currentIndexSelected = 0;
-    for (let i = 0; i < Constants.wordList.length; i++) {
-        if (newList[i].id !== Constants.wordList[i].id) {
-            isEqual = false;
-        }
-
-        if(newList[i].isSelected){
-            currentIndexSelected = i;
-        }
-    }
-    
-    return {
-        ...state,
-        selectedList: newList,
-        isDone: isEqual,
-        currentIndexSelected: currentIndexSelected
-    }
 }
 
 
