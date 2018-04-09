@@ -1,24 +1,17 @@
 export const initSelectionList = (originalList) => {
-    console.log("DUC: initSelectionList")
     let newList = [];
     let count = originalList.length;
 
     originalList.forEach(element => {
         let item1 = initializeSelectionItem(element.id, element.name);
-        count++;
-        let item2 = initializeSelectionItem(count, getRandomName(element.name));
-
-        // let childList = [];
-        // childList.push(item1);
-        // childList.push(item2);
-        // childList.sort(function (a, b) {
-        //     return a.name > b.name;
-        // });
-
-        // Array.prototype.push.apply(newList, childList);
-
         newList.push(item1);
-        newList.push(item2);
+
+        if(element.name.length > 1){
+            count++;
+            let item2 = initializeSelectionItem(count, getRandomName(element.name));
+            newList.push(item2);
+        }
+    
     });
 
     newList.sort((a, b) => {
@@ -79,6 +72,10 @@ function initializeSelectionItem(id, name) {
 
 function getRandomName(originalName) {
     let maxLength = originalName.length;
+    if(maxLength <= 1){
+        return originalName;
+    }
+    
     let index1 = Math.floor(Math.random() * (maxLength / 2));
     let index2 = Math.floor(maxLength / 2 + Math.random() * (maxLength - maxLength / 2));
 

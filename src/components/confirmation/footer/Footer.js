@@ -11,15 +11,6 @@ import styles from './styles';
 
 class Footer extends Component {
 
-    render() {
-        const bottomView = (this.props.isDone) ? this.doneView() : this.announceView();
-        return (
-            <View style={styles.container}>
-                {bottomView}
-            </View>
-        );
-    }
-
     announceView() {
         return (
             <Text style={styles.announceStyle}>Please fill each position with correct word</Text>
@@ -32,6 +23,15 @@ class Footer extends Component {
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Done</Text>
             </TouchableOpacity>
         )
+    }
+    
+    render() {
+        const bottomView = (this.props.isDone) ? this.doneView() : this.announceView();
+        return (
+            <View style={styles.container}>
+                {bottomView}
+            </View>
+        );
     }
 }
 

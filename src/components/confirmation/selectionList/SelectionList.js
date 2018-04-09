@@ -20,6 +20,17 @@ class SelectionList extends Component {
         }
     }
 
+    componentDidMount(){
+        this.generateSelectionList();
+    }
+
+    generateSelectionList(){
+        const selectionList = initSelectionList(Constants.wordList);
+        this.setState({
+            selectionList
+        })
+    }
+    
     render() {
         const selectionList = this.state.selectionList;
         return (
@@ -35,16 +46,7 @@ class SelectionList extends Component {
         );
     }
 
-    componentDidMount(){
-        this.generateSelectionList();
-    }
-
-    generateSelectionList(){
-        const selectionList = initSelectionList(Constants.wordList);
-        this.setState({
-            selectionList
-        })
-    }
+    
 }
 
 function mapStateToProps(state){

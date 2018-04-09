@@ -35,7 +35,6 @@ const AppStack = StackNavigator(
 
 class BitnoicApp extends Component {
     render() {
-        
         return (
             <Provider store={Store}>
                 <AppStack />

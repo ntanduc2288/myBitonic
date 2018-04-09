@@ -21,6 +21,10 @@ const resetAction = NavigationActions.reset({
 
 class Confirmation extends Component {
 
+    backToHomeScreen() {
+        this.props.navigation.dispatch(resetAction);
+    }
+    
     render() {
         return (
             <View style={styles.container}>
@@ -35,9 +39,7 @@ class Confirmation extends Component {
         );
     }
 
-    backToHomeScreen() {
-        this.props.navigation.dispatch(resetAction);
-    }
+    
 }
 
 

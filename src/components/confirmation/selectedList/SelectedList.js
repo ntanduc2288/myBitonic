@@ -18,22 +18,6 @@ class SelectedList extends Component {
             latestVisibleItemIndex: 0,
         }
     }
-    render() {
-        const myList = this.props.mySelectedList;
-
-        return (
-            <View style={styles.container}>
-                <FlatList
-                    ref='flatlist'
-                    data={myList}
-                    renderItem={({ item, index }) => <ItemSelected item={item} index={index} />}
-                    keyExtractor={item => item.index.toString()}
-                    onViewableItemsChanged={this.onViewableItemsChanged}
-
-                />
-            </View>
-        );
-    }
 
     onViewableItemsChanged = ({ viewableItems, changed }) => {
         this.setState({
@@ -48,10 +32,27 @@ class SelectedList extends Component {
 
     scrollToNextPosition(startIndex, endIndex, currentIndex){
         if (currentIndex > endIndex) {
-            this.refs.flatlist.scrollToIndex({ index: startIndex + 1, animated: true });
+            this.myFlatList.scrollToIndex({ index: startIndex + 1, animated: true });
         }
     }
 
+
+    render() {
+        const myList = this.props.mySelectedList;
+
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    ref={(ref) => { this.myFlatList = ref; }}
+                    data={myList}
+                    renderItem={({ item, index }) => <ItemSelected item={item} index={index} />}
+                    keyExtractor={item => item.index.toString()}
+                    onViewableItemsChanged={this.onViewableItemsChanged}
+
+                />
+            </View>
+        );
+    }
 
 }
 

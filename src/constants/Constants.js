@@ -47,6 +47,7 @@ const wordList = [
         id: 12,
         name: "least"
     },
+   
 ]
 
 const backupDescription = "Please carefully write down this words. We will check correctness of your backup on the next screen.";
