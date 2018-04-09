@@ -1,5 +1,5 @@
-import Constants from '../../constants/Constants';
-import { initSelectedList, initItemSelected, initPickedSelectionItem } from '../../utils/Utils';
+import Constants from 'src/constants/Constants';
+import { initSelectedList, initItemSelected, initPickedSelectionItem } from 'src/utils/Utils';
 
 
 const selectedList = initSelectedList(Constants.wordList);

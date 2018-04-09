@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import ItemSelection from './itemSelection/ItemSelection';
 import { initSelectionList } from '../../../utils/Utils';
-import Constants from '../../../constants/Constants';
+import Constants from 'src/constants/Constants';
 import styles from './styles';
 
 class SelectionList extends Component {

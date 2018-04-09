@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import ItemBackup from './itemBackup/ItemBackup';
-import Constants from '../../constants/Constants';
+import Constants from 'src/constants/Constants';
 import styles from './styles';
 class Backup extends Component {
 

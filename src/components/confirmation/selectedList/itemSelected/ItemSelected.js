@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { touchOnSelectedItem } from '../../../../redux/Actions';
-
+import styles from './styles';
 class ItemSelected extends Component {
     state = {}
 
@@ -44,20 +44,3 @@ class ItemSelected extends Component {
 
 export default connect(null, {touchOnSelectedItem})(ItemSelected);
 
-const styles = StyleSheet.create({
-    container: {
-       
-    },
-    generalText: {
-        color: 'black',
-        fontSize: 15
-    },
-    chileContainer: {
-        height: 120,
-        flexDirection: 'row',
-
-        alignItems: 'center',
-
-    }
-
-})

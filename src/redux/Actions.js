@@ -1,4 +1,4 @@
-import Constants from '../constants/Constants';
+import Constants from 'src/constants/Constants';
 export function touchOnSelectedItem(index) {
     return {
         type: Constants.TOUCH_ON_SELECTED_ITEM,
