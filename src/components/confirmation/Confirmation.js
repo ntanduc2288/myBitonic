@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import SelectedList from './selectedList/SelectedList';
 import SelectionList from './selectionList/SelectionList';
-import Footer from './Footer';
+import Footer from './footer/Footer';
 import { NavigationActions } from 'react-navigation';
+import styles from './styles';
 
 const resetAction = NavigationActions.reset({
     index: 0,
@@ -41,34 +42,3 @@ class Confirmation extends Component {
 
 
 export default Confirmation;
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    choosenList: {
-        flex: 1,
-        flexDirection: 'row',
-        marginLeft: 10,
-        backgroundColor: 'lightblue'
-    },
-    title: {
-        padding: 10,
-        fontWeight: 'bold',
-        fontSize: 30
-    },
-    bottom: {
-        alignItems: 'stretch',
-        backgroundColor: 'green',
-        height: 80
-    },
-    button: {
-        backgroundColor: 'blue',
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5
-    }
-})

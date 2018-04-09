@@ -5,10 +5,10 @@ import {
     FlatList,
 } from 'react-native';
 import { connect } from 'react-redux';
-import ItemSelection from './ItemSelection';
-import ItemBackup from '../../backup/ItemBackup';
+import ItemSelection from './itemSelection/ItemSelection';
 import { initSelectionList } from '../../../utils/Utils';
 import Constants from '../../../constants/Constants';
+import styles from './styles';
 
 class SelectionList extends Component {
     
@@ -54,31 +54,3 @@ function mapStateToProps(state){
 }
 export default connect(mapStateToProps)(SelectionList);
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'lightgray',
-    },
-    choosenList: {
-        flex: 1,
-        marginTop: 10,
-        marginLeft: 10,
-        backgroundColor: 'lightblue'
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 30
-    },
-    bottom: {
-        alignItems: 'stretch',
-        backgroundColor: 'green',
-        height: 80
-    },
-    button: {
-        backgroundColor: 'blue',
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5
-    }
-})

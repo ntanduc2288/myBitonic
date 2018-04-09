@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { touchOnSelectedItem } from '../../../redux/Actions';
+import { touchOnSelectedItem } from '../../../../redux/Actions';
 
 class ItemSelected extends Component {
     state = {}

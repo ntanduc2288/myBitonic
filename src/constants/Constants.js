@@ -49,8 +49,11 @@ const wordList = [
     },
 ]
 
+const backupDescription = "Please carefully write down this words. We will check correctness of your backup on the next screen.";
+
 export default {
     wordList: wordList,
     TOUCH_ON_SELECTED_ITEM: 'TOUCH_ON_SELECTED_ITEM',
     TOUCH_ON_SELECTION_ITEM: 'TOUCH_ON_SELECTION_ITEM',
+    backupDescription
 }

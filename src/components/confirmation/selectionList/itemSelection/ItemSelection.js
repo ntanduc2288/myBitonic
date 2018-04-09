@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { touchOnSelectionItem } from '../../../redux/Actions';
+import { touchOnSelectionItem } from '../../../../redux/Actions';
+import styles from './styles';
 
 class ItemSelection extends Component {
 
@@ -23,16 +24,3 @@ class ItemSelection extends Component {
 
 export default connect(null, {touchOnSelectionItem})(ItemSelection);
 
-const styles = StyleSheet.create({
-    container: {
-        margin: 5,
-        marginLeft: 20,
-        marginRight: 20,
-        backgroundColor: 'blue',
-        height: 35, 
-        alignItems: 'center',
-        justifyContent:'center',
-        borderRadius: 5
-    },
-    
-})
