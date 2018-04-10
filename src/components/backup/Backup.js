@@ -7,41 +7,23 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import ItemBackup from './itemBackup/ItemBackup';
 import Constants from 'src/constants/Constants';
 import styles from './styles';
+import WordList from './wordList/WordList';
+
 class Backup extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            datas: []
-        }
-    }
-
-    componentDidMount(){
-        this.setState({
-            datas: Constants.wordList,
-        })
-    }
 
     gotoConfirmation(){
         this.props.navigation.navigate('Confirmation');
     }
 
     render() {
-        const wordList = this.state.datas;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Backup wallet</Text>
                 <Text style={{marginTop: 10, color:'gray'}}>{Constants.backupDescription}</Text>
                 <View style={styles.listContainer}>
-                    <FlatList
-                        data={wordList}
-                        renderItem={({ item }) => <ItemBackup item={item} />}
-                        keyExtractor={item => item.id.toString()}
-                        numColumns='2'
-                    />
+                    <WordList/>   
                 </View>
 
                 <View style={styles.bottom}>
