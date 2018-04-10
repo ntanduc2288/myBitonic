@@ -11,6 +11,8 @@ import SelectionList from './selectionList/SelectionList';
 import Footer from './footer/Footer';
 import { NavigationActions } from 'react-navigation';
 import styles from './styles';
+import  { resetSelectedList } from '../../redux/Actions';
+import { connect } from 'react-redux';
 
 const resetAction = NavigationActions.reset({
     index: 0,
@@ -24,6 +26,15 @@ class Confirmation extends Component {
     backToHomeScreen() {
         this.props.navigation.dispatch(resetAction);
     }
+
+    resetSelectedList(){
+        this.props.resetSelectedList();
+    }
+
+    onDoneClicked(){
+        this.backToHomeScreen();
+        this.resetSelectedList();
+    }
     
     render() {
         return (
@@ -34,7 +45,7 @@ class Confirmation extends Component {
                     <SelectionList />
                 </View>
 
-                <Footer doneClicked={() => this.backToHomeScreen()} />
+                <Footer doneClicked={() => this.onDoneClicked()} />
             </View>
         );
     }
@@ -43,4 +54,4 @@ class Confirmation extends Component {
 }
 
 
-export default Confirmation;
+export default connect(null, {resetSelectedList})(Confirmation);

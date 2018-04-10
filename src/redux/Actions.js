@@ -12,3 +12,9 @@ export function touchOnSelectionItem(item) {
         value: item,
     }
 }
+
+export function resetSelectedList(){
+    return {
+        type: Constants.RESET_SELECTED_LIST,
+    }
+}

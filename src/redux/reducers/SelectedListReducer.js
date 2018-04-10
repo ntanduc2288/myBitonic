@@ -19,6 +19,8 @@ const Reducer = (state = defaultSelectedListState, action) => {
             return getNewStateFromSelectedItem(state, action.index);
         case Constants.TOUCH_ON_SELECTION_ITEM:
             return getNewStateFromSelectionItem(state, action.value);
+        case Constants.RESET_SELECTED_LIST:
+            return resetSelectedList(state);
     }
     return state;
 }
@@ -91,6 +93,13 @@ function getNewSelectedList(currentList, item) {
             return element;
         });
     return newList;
+}
+
+function resetSelectedList(state){
+    return {
+        ...state,
+        selectedList: initSelectedList(Constants.wordList),
+    }
 }
 
 

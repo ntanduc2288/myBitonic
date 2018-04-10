@@ -56,5 +56,6 @@ export default {
     wordList: wordList,
     TOUCH_ON_SELECTED_ITEM: 'TOUCH_ON_SELECTED_ITEM',
     TOUCH_ON_SELECTION_ITEM: 'TOUCH_ON_SELECTION_ITEM',
-    backupDescription
+    backupDescription,
+    RESET_SELECTED_LIST: 'RESET_SELECTED_LIST',
 }
