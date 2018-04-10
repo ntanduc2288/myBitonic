@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     chileContainer: {
-        height: 120,
+        height: 50,
         flexDirection: 'row',
 
         alignItems: 'center',
