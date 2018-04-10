@@ -14,6 +14,15 @@ class Backup extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            datas: []
+        }
+    }
+
+    componentDidMount(){
+        this.setState({
+            datas: Constants.wordList,
+        })
     }
 
     gotoConfirmation(){
@@ -21,7 +30,7 @@ class Backup extends Component {
     }
 
     render() {
-        const wordList = Constants.wordList;
+        const wordList = this.state.datas;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Backup wallet</Text>

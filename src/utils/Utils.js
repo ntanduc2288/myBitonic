@@ -15,7 +15,7 @@ export const initSelectionList = (originalList) => {
     });
 
     newList.sort((a, b) => {
-        return a.name > b.name;
+        return a.name > b.name ? 1 : -1;
     })
     return newList;
 }
