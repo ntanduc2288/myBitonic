@@ -41,7 +41,7 @@ function getNewStateFromSelectionItem(state, item) {
     let isEqual = true;
     let currentIndexSelected = 0;
     for (let i = 0; i < Constants.wordList.length; i++) {
-        if (newList[i].id !== newList[i].selectedId) {
+        if (newList[i].id !== newList[i].selec) {
             isEqual = false;
         }
 
@@ -60,23 +60,35 @@ function getNewStateFromSelectionItem(state, item) {
 
 //This function is used for "TOUCH_ON_SELECTION_ITEM" case
 function getNewSelectedList(currentList, item) {
-    let alreadyJumped = false;
+    let isFilledAllItems = true;
     let newList = currentList
         //update name and selectedId for current item selected
         .map(element => {
             if (element.isSelected) {
                 element = { ...element, name: item.name, selectedId: item.id }
             }
-            return element;
-        })
-        //Jump to next position which has not value yet
-        .map(element => {
-            if (element.id === "" && !alreadyJumped) {
-                alreadyJumped = true;
-                element = { ...element, isSelected: true }
+
+            if(element.selectedId === ""){
+                isFilledAllItems = false;
             }
+
             return element;
         });
+
+        //Jump to next position
+        if(!isFilledAllItems){
+            let alreadyJumped = false;
+            newList = newList.map(element => {
+                needToHighline = false;
+                if (element.selectedId === "" && !alreadyJumped){
+                    needToHighline = true;
+                    alreadyJumped = true;
+                }
+    
+                return element = { ...element, isSelected: needToHighline }
+            });
+        }
+
     return newList;
 }
 
