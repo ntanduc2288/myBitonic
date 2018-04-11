@@ -87,8 +87,8 @@ function getNewSelectedList(currentList, item) {
             if (element.selectedId === "" && !alreadyJumped) {
                 needToHighline = true;
                 alreadyJumped = true;
-                // alert("abc" + element.id)
-                EventBus.publish("scrollToItem", element.id);
+                
+                EventBus.publish(Constants.NOTIFY_SCROLLING, element.id);
             }
 
             return element = { ...element, isSelected: needToHighline }
@@ -113,7 +113,7 @@ function getNewSelectedList(currentList, item) {
 
             if(element.index === nextIndextSelected){
                 needToHighline = true;
-                EventBus.publish("scrollToItem", element.id);
+                EventBus.publish(Constants.NOTIFY_SCROLLING, element.id);
             }
 
             return element = { ...element, isSelected: needToHighline };
