@@ -16,13 +16,13 @@ const defaultSelectedListState = {
 //Get new state when touch on selected item
 function getNewStateFromSelectedItem(state, id) {
     let newList = state.selectedList.map(e => {
-    
+
         let isSelectedTemp = false;
-        if(e.id === id){
+        if (e.id === id) {
             isSelectedTemp = true;
         }
 
-        e = {...e, isSelected: isSelectedTemp};
+        e = { ...e, isSelected: isSelectedTemp };
         return e;
     });
 
@@ -60,6 +60,7 @@ function getNewStateFromSelectionItem(state, item) {
 
 //This function is used for "TOUCH_ON_SELECTION_ITEM" case
 function getNewSelectedList(currentList, item) {
+    
     let isFilledAllItems = true;
     let newList = currentList
         //update name and selectedId for current item selected
@@ -68,31 +69,58 @@ function getNewSelectedList(currentList, item) {
                 element = { ...element, name: item.name, selectedId: item.id }
             }
 
-            if(element.selectedId === ""){
+            if (element.selectedId === "") {
                 isFilledAllItems = false;
             }
 
             return element;
         });
 
-        //Jump to next position
-        if(!isFilledAllItems){
-            let alreadyJumped = false;
-            newList = newList.map(element => {
-                needToHighline = false;
-                if (element.selectedId === "" && !alreadyJumped){
-                    needToHighline = true;
-                    alreadyJumped = true;
-                }
-    
-                return element = { ...element, isSelected: needToHighline }
-            });
-        }
+        // alert(newList[1].name + " " + newList[1].isSelected)
+    //Jump to next position
+    //If all positions are not filled -> move to first item which has not selected
+    if (!isFilledAllItems) {
+        let alreadyJumped = false;
+        newList = newList.map(element => {
+            needToHighline = false;
+            if (element.selectedId === "" && !alreadyJumped) {
+                needToHighline = true;
+                alreadyJumped = true;
+            }
+
+            return element = { ...element, isSelected: needToHighline }
+        });
+    }
+    //If all positions are filled -> move to next position
+    else {    
+        let nextIndextSelected = "";
+        newList = newList.map(element => {
+
+            //If it is the last element -> do nothing (do not need to move to next position)
+            if(currentList[currentList.length - 1].id === element.id){
+                return element;
+            }
+
+
+            let needToHighline = false;
+
+            if(element.isSelected){
+                nextIndextSelected = element.index + 1;
+            }
+
+            if(element.index === nextIndextSelected){
+                needToHighline = true;
+            }
+
+            return element = { ...element, isSelected: needToHighline };
+        })
+    }
+
 
     return newList;
 }
 
-function resetSelectedList(state){
+function resetSelectedList(state) {
     return {
         ...state,
         selectedList: initSelectedList(Constants.wordList),

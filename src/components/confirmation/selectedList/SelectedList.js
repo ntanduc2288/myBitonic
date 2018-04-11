@@ -25,7 +25,6 @@ class SelectedList extends Component {
 
         //Notify to selection list that we are currently select the first item
         this.props.touchOnSelectedItem(1);
-        // this.props.changeSelectionList(1);
         
     }
 
