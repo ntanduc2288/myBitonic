@@ -9,6 +9,8 @@ function initParentItem(id, mainName, datas){
     }
 }
 
+
+//Create random list based on WordList
 function initDefaultList() {
     wordList = Constants.wordList.slice(0);
     newList = [];
@@ -17,7 +19,6 @@ function initDefaultList() {
         newList.push(item);
     });
 
-    test = [];
     newList.forEach(element => {
 
         words = RandomWords(11);

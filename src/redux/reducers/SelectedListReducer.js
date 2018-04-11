@@ -14,33 +14,34 @@ const defaultSelectedListState = {
 }
 
 //Get new state when touch on selected item
-function getNewStateFromSelectedItem(state, clickedIndex) {
+function getNewStateFromSelectedItem(state, id) {
     let newList = state.selectedList.map(e => {
-        if (e.index === clickedIndex && e.id !== "") {
-            if(!e.isSelected){
-                e = { ...e, isSelected: !e.isSelected }
-            }
+    
+        let isSelectedTemp = false;
+        if(e.id === id){
+            isSelectedTemp = true;
         }
-        else {
-            e = { ...e, isSelected: false };
-        }
+
+        e = {...e, isSelected: isSelectedTemp};
         return e;
     });
 
     return {
         ...state,
         selectedList: newList,
-        currentIndexSelected: clickedIndex,
+        currentIndexSelected: id,
     };
 }
 
 //Get new state when touch on selection item
 function getNewStateFromSelectionItem(state, item) {
     const newList = getNewSelectedList(state.selectedList, item);
+
+    //Verify currentSelectedList with WordList
     let isEqual = true;
     let currentIndexSelected = 0;
     for (let i = 0; i < Constants.wordList.length; i++) {
-        if (newList[i].id !== Constants.wordList[i].id) {
+        if (newList[i].id !== newList[i].selectedId) {
             isEqual = false;
         }
 
@@ -61,10 +62,10 @@ function getNewStateFromSelectionItem(state, item) {
 function getNewSelectedList(currentList, item) {
     let alreadyJumped = false;
     let newList = currentList
-        //update value for current item selected
+        //update name and selectedId for current item selected
         .map(element => {
             if (element.isSelected) {
-                element = { ...element, name: item.name, id: item.id, isSelected: false }
+                element = { ...element, name: item.name, selectedId: item.id }
             }
             return element;
         })
@@ -89,7 +90,7 @@ function resetSelectedList(state){
 const Reducer = (state = defaultSelectedListState, action) => {
     switch (action.type) {
         case Constants.TOUCH_ON_SELECTED_ITEM:
-            return getNewStateFromSelectedItem(state, action.index);
+            return getNewStateFromSelectedItem(state, action.id);
         case Constants.TOUCH_ON_SELECTION_ITEM:
             return getNewStateFromSelectionItem(state, action.value);
         case Constants.RESET_SELECTED_LIST:

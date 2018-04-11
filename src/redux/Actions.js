@@ -1,8 +1,8 @@
 import Constants from 'src/constants/Constants';
-export function touchOnSelectedItem(index) {
+export function touchOnSelectedItem(id) {
     return {
         type: Constants.TOUCH_ON_SELECTED_ITEM,
-        index
+        id
     }
 }
 

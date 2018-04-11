@@ -24,35 +24,14 @@ export const initSelectedList = (originalList) => {
     let newList = [];
     originalList.forEach(element => {
         let item = {};
-        // if (element.id === 1) {
-        //     item = {
-        //         index: element.id - 1,
-        //         id: element.id,
-        //         name: element.name,
-        //         isSelected: false,
-        //     }
-        // }else {
-        //     let isSelectedTmp = false;
-        //     if(element.id === 2) isSelectedTmp = true;
-        //     item = {
-        //         index: element.id - 1,
-        //         id: "",
-        //         name: "",
-        //         isSelected: isSelectedTmp,
-        //     }
-        // }
-        
         let isSelected = false;
-        if(element.id == 1){
-            isSelected = true;
-        }
 
         item = {
             index: element.id - 1,
-            id: element.id,
-            selectedId: "",
+            id: element.id, //This id is word list ID, it used to compare with seleted ID
+            selectedId: "", //This id is an id which user touch on selection
             name: "",
-            isSelected: isSelected,
+            isSelected: false,
         }
         
         newList.push(item);
