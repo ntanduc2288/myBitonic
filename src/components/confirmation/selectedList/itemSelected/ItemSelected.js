@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { touchOnSelectedItem } from '../../../../redux/Actions';
+import { touchOnSelectedItem, changeSelectionList } from '../../../../redux/Actions';
 import styles from './styles';
 class ItemSelected extends Component {
     state = {}
@@ -14,6 +14,7 @@ class ItemSelected extends Component {
     clickedOnItem(index){
         if(this.props.item.id !== ""){
             this.props.touchOnSelectedItem(index);
+            this.props.changeSelectionList(this.props.item.id);
         }
         
     }
@@ -42,5 +43,5 @@ class ItemSelected extends Component {
     }
 }
 
-export default connect(null, {touchOnSelectedItem})(ItemSelected);
+export default connect(null, {touchOnSelectedItem, changeSelectionList})(ItemSelected);
 

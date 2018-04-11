@@ -24,22 +24,35 @@ export const initSelectedList = (originalList) => {
     let newList = [];
     originalList.forEach(element => {
         let item = {};
-        if (element.id === 1) {
-            item = {
-                index: element.id - 1,
-                id: element.id,
-                name: element.name,
-                isSelected: false,
-            }
-        }else {
-            let isSelectedTmp = false;
-            if(element.id === 2) isSelectedTmp = true;
-            item = {
-                index: element.id - 1,
-                id: "",
-                name: "",
-                isSelected: isSelectedTmp,
-            }
+        // if (element.id === 1) {
+        //     item = {
+        //         index: element.id - 1,
+        //         id: element.id,
+        //         name: element.name,
+        //         isSelected: false,
+        //     }
+        // }else {
+        //     let isSelectedTmp = false;
+        //     if(element.id === 2) isSelectedTmp = true;
+        //     item = {
+        //         index: element.id - 1,
+        //         id: "",
+        //         name: "",
+        //         isSelected: isSelectedTmp,
+        //     }
+        // }
+        
+        let isSelected = false;
+        if(element.id == 1){
+            isSelected = true;
+        }
+
+        item = {
+            index: element.id - 1,
+            id: element.id,
+            selectedId: "",
+            name: "",
+            isSelected: isSelected,
         }
         
         newList.push(item);

@@ -13,22 +13,6 @@ const defaultSelectedListState = {
     currentIndexSelected: 0,
 }
 
-const Reducer = (state = defaultSelectedListState, action) => {
-    switch (action.type) {
-        case Constants.TOUCH_ON_SELECTED_ITEM:
-            return getNewStateFromSelectedItem(state, action.index);
-        case Constants.TOUCH_ON_SELECTION_ITEM:
-            return getNewStateFromSelectionItem(state, action.value);
-        case Constants.RESET_SELECTED_LIST:
-            return resetSelectedList(state);
-    }
-    return state;
-}
-
-
-export default Reducer;
-
-
 //Get new state when touch on selected item
 function getNewStateFromSelectedItem(state, clickedIndex) {
     let newList = state.selectedList.map(e => {
@@ -101,6 +85,24 @@ function resetSelectedList(state){
         selectedList: initSelectedList(Constants.wordList),
     }
 }
+
+const Reducer = (state = defaultSelectedListState, action) => {
+    switch (action.type) {
+        case Constants.TOUCH_ON_SELECTED_ITEM:
+            return getNewStateFromSelectedItem(state, action.index);
+        case Constants.TOUCH_ON_SELECTION_ITEM:
+            return getNewStateFromSelectionItem(state, action.value);
+        case Constants.RESET_SELECTED_LIST:
+            return resetSelectedList(state);
+    }
+    return state;
+}
+
+
+export default Reducer;
+
+
+
 
 
 

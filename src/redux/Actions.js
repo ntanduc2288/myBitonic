@@ -18,3 +18,10 @@ export function resetSelectedList(){
         type: Constants.RESET_SELECTED_LIST,
     }
 }
+
+export function changeSelectionList(id){
+    return {
+        type: Constants.CHANGE_SELECTION_LIST,
+        id
+    }
+}

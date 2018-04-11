@@ -9,6 +9,7 @@ import ItemSelection from './itemSelection/ItemSelection';
 import { initSelectionList } from '../../../utils/Utils';
 import Constants from 'src/constants/Constants';
 import styles from './styles';
+import { changeSelectionList } from '../../../redux/Actions';
 
 class SelectionList extends Component {
     
@@ -22,6 +23,7 @@ class SelectionList extends Component {
 
     componentDidMount(){
         this.generateSelectionList();
+        
     }
 
     generateSelectionList(){
@@ -32,7 +34,7 @@ class SelectionList extends Component {
     }
     
     render() {
-        const selectionList = this.state.selectionList;
+        const selectionList = this.props.mySelectionList;
         return (
             <View style={styles.container}>
                 <FlatList
@@ -51,8 +53,10 @@ class SelectionList extends Component {
 
 function mapStateToProps(state){
     return {
-        mySelectionList: state.selectedListReducer.selectionList,
+        // mySelectionList: state.selectedListReducer.selectionList,
+        mySelectionList: state.selectionListReducer.childList,
+        
     }
 }
-export default connect(mapStateToProps)(SelectionList);
+export default connect(mapStateToProps, {changeSelectionList})(SelectionList);
 

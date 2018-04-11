@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import ItemSelected from './itemSelected/ItemSelected';
 import styles from './styles';
+import { changeSelectionList } from '../../../redux/Actions';
 
 class SelectedList extends Component {
 
@@ -17,6 +18,12 @@ class SelectedList extends Component {
             firstVisibleItemIndex: 0,
             latestVisibleItemIndex: 0,
         }
+    }
+
+    componentDidMount(){
+
+        //Notify to selection list that we are currently select the first item
+        this.props.changeSelectionList(1)
     }
 
     onViewableItemsChanged = ({ viewableItems, changed }) => {
@@ -63,5 +70,5 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(SelectedList);
+export default connect(mapStateToProps, {changeSelectionList})(SelectedList);
 
