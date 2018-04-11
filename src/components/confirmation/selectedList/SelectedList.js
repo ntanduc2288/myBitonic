@@ -25,8 +25,9 @@ class SelectedList extends Component {
     }
 
     componentDidMount() {
+        //Register for scrolling event trigger
         EventBus.on(Constants.NOTIFY_SCROLLING, this.callback);
-        //Notify to selection list that we are currently select the first item
+        //Notify to selected list that we are currently select the first item with ID = 1
         this.props.touchOnSelectedItem(1);
 
     }
@@ -37,21 +38,18 @@ class SelectedList extends Component {
 
 
     callback = (id) => {
-        this.scrollTo(id);
+        this.scrollToItemID(id);
     
     };
 
-    scrollTo(id) {
+    scrollToItemID(id) {
 
         console.log("DUC: this.heightOfFlatlist: " + heightOfFlatlist)
-        //this value 50 is the same with value in styles of Item Selected -- testing
-        let offsetValue = id * 50 - heightOfFlatlist;
-        console.log("DUC: offsetvalue: " + offsetValue)
-        console.log("DUC: //////////////////////////////////////////////////////")
-        
-        if(this.props.currentSelectedIndex >= this.state.latestVisibleItemIndex){
+        if(id < this.state.firstVisibleItemIndex || id > this.state.latestVisibleItemIndex){
+            let offsetValue = id * Constants.HEIGHT_OF_ITEM_SELECTED_VIEW - heightOfFlatlist;
             this.myFlatList.scrollToOffset({ offset: offsetValue })
         }
+       
 
     }
 
@@ -88,7 +86,6 @@ class SelectedList extends Component {
 function mapStateToProps(state) {
     return {
         mySelectedList: state.selectedListReducer.selectedList,
-        currentSelectedIndex: state.selectedListReducer.currentIndexSelected
     }
 }
 

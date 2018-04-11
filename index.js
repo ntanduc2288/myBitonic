@@ -8,6 +8,7 @@ YellowBox.ignoreWarnings([
     'Warning: isMounted(...) is deprecated',
     'Warning: componentWillUpdate is deprecated',
     'Module RCTImageLoader requires',
+    'Class RCTCxxModule was not exported', //https://github.com/facebook/react-native/issues/18201
   ]);
 
 AppRegistry.registerComponent('myBitnoic', () => App);

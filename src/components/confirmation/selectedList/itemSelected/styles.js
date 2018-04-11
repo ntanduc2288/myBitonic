@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     chileContainer: {
-        height: 50,
+        height: Constants.HEIGHT_OF_ITEM_SELECTED_VIEW,
         flexDirection: 'row',
 
         alignItems: 'center',

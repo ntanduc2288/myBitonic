@@ -11,7 +11,6 @@ const defaultSelectedListState = {
     initItemSelected,
     initPickedSelectionItem,
     isDone: false,
-    currentIndexSelected: 0,
 }
 
 //Get new state when touch on selected item
@@ -30,7 +29,6 @@ function getNewStateFromSelectedItem(state, id) {
     return {
         ...state,
         selectedList: newList,
-        currentIndexSelected: id,
     };
 }
 
@@ -40,23 +38,19 @@ function getNewStateFromSelectionItem(state, item) {
 
     //Verify currentSelectedList with WordList
     let isEqual = true;
-    let currentIndexSelected = 0;
     for (let i = 0; i < Constants.wordList.length; i++) {
         if (newList[i].id !== newList[i].selectedId) {
             isEqual = false;
         }
-
-        if (newList[i].isSelected) {
-            currentIndexSelected = i;
-        }
     }
 
-    return {
+    let newState = {
         ...state,
         selectedList: newList,
         isDone: isEqual,
-        currentIndexSelected: currentIndexSelected
     }
+
+    return newState;
 }
 
 //This function is used for "TOUCH_ON_SELECTION_ITEM" case
@@ -87,7 +81,7 @@ function getNewSelectedList(currentList, item) {
             if (element.selectedId === "" && !alreadyJumped) {
                 needToHighline = true;
                 alreadyJumped = true;
-                
+                console.log("DUC jump to " + element.id);
                 EventBus.publish(Constants.NOTIFY_SCROLLING, element.id);
             }
 
@@ -100,10 +94,9 @@ function getNewSelectedList(currentList, item) {
         newList = newList.map(element => {
 
             //If it is the last element -> do nothing (do not need to move to next position)
-            if(currentList[currentList.length - 1].id === element.id){
+            if(currentList[currentList.length - 1].id === element.id && element.isSelected){
                 return element;
             }
-
 
             let needToHighline = false;
 
