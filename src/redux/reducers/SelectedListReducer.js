@@ -1,5 +1,6 @@
 import Constants from 'src/constants/Constants';
 import { initSelectedList, initItemSelected, initPickedSelectionItem } from 'src/utils/Utils';
+import EventBus from 'eventing-bus';
 
 
 const selectedList = initSelectedList(Constants.wordList);
@@ -76,7 +77,7 @@ function getNewSelectedList(currentList, item) {
             return element;
         });
 
-        // alert(newList[1].name + " " + newList[1].isSelected)
+        
     //Jump to next position
     //If all positions are not filled -> move to first item which has not selected
     if (!isFilledAllItems) {
@@ -86,6 +87,8 @@ function getNewSelectedList(currentList, item) {
             if (element.selectedId === "" && !alreadyJumped) {
                 needToHighline = true;
                 alreadyJumped = true;
+                // alert("abc" + element.id)
+                EventBus.publish("scrollToItem", element.id);
             }
 
             return element = { ...element, isSelected: needToHighline }
@@ -110,6 +113,7 @@ function getNewSelectedList(currentList, item) {
 
             if(element.index === nextIndextSelected){
                 needToHighline = true;
+                EventBus.publish("scrollToItem", element.id);
             }
 
             return element = { ...element, isSelected: needToHighline };

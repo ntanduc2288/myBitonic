@@ -9,7 +9,14 @@ import { connect } from 'react-redux';
 import ItemSelected from './itemSelected/ItemSelected';
 import styles from './styles';
 import { touchOnSelectedItem, changeSelectionList } from '../../../redux/Actions';
+import EventBus from 'eventing-bus';
+import Constants from 'src/constants/Constants';
 
+
+
+
+var thisComponent;
+var heightOfFlatlist = 0;
 class SelectedList extends Component {
 
     constructor(props) {
@@ -18,14 +25,44 @@ class SelectedList extends Component {
             firstVisibleItemIndex: 0,
             latestVisibleItemIndex: 0,
         }
-    
+
+        EventBus.on("scrollToItem", this.callback);
+        this.scrollTo = this.scrollTo.bind(this);
+        thisComponent = this;
+        
     }
 
-    componentDidMount(){
+
+    callback = function (id) {
+        // alert(this);
+        
+        thisComponent.scrollTo(id);
+    };
+
+    scrollTo(id) {
+
+        console.log("DUC: this.heightOfFlatlist: " + heightOfFlatlist)
+        let offsetValue = id * 50 - heightOfFlatlist;
+        console.log("DUC: offsetvalue: " + offsetValue)
+        console.log("DUC: //////////////////////////////////////////////////////")
+        
+        if(this.props.currentSelectedIndex >= this.state.latestVisibleItemIndex){
+            this.myFlatList.scrollToOffset({ offset: offsetValue })
+        }
+
+    }
+
+    handleTextLayout(evt) {
+        
+        heightOfFlatlist = evt.nativeEvent.layout.height;
+    }
+
+
+    componentDidMount() {
 
         //Notify to selection list that we are currently select the first item
         this.props.touchOnSelectedItem(1);
-        
+
     }
 
 
@@ -36,15 +73,16 @@ class SelectedList extends Component {
         })
     }
 
-    componentDidUpdate() {
-        // this.scrollToNextPosition(this.state.firstVisibleItemIndex, this.state.latestVisibleItemIndex, this.props.currentSelectedIndex);
-    }
+    // componentDidUpdate() {
+    //     this.scrollToNextPosition(this.state.firstVisibleItemIndex, this.state.latestVisibleItemIndex, this.props.currentSelectedIndex);
+    // }
 
-    scrollToNextPosition(startIndex, endIndex, currentIndex){
-        if (currentIndex > endIndex) {
-            this.myFlatList.scrollToIndex({ index: startIndex + 1, animated: true });
-        }
-    }
+    // scrollToNextPosition(startIndex, endIndex, currentIndex){
+    //     if (currentIndex > endIndex) {
+    //         // this.myFlatList.scrollToIndex({ index: startIndex + 1, animated: true });
+    //         // this.scrollTo(endIndex * 50)
+    //     }
+    // }
 
 
     render() {
@@ -57,7 +95,7 @@ class SelectedList extends Component {
                     renderItem={({ item, index }) => <ItemSelected item={item} index={index} />}
                     keyExtractor={item => item.index.toString()}
                     onViewableItemsChanged={this.onViewableItemsChanged}
-
+                    onLayout={this.handleTextLayout}
                 />
             </View>
         );
@@ -72,5 +110,5 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {touchOnSelectedItem, changeSelectionList})(SelectedList);
+export default connect(mapStateToProps, { touchOnSelectedItem, changeSelectionList })(SelectedList);
 
