@@ -13,7 +13,7 @@ class Footer extends Component {
 
     announceView() {
         return (
-            <Text style={styles.announceStyle}>Please fill each position with correct word</Text>
+            <Text style={styles.announceStyle}>{this.props.announcement}</Text>
         )
     }
 
@@ -38,6 +38,7 @@ class Footer extends Component {
 function mapStateToProps(state){
     return {
         isDone: state.selectedListReducer.isDone,
+        announcement: state.selectedListReducer.announcement,
     }
 }
 

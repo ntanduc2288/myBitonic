@@ -11,6 +11,7 @@ const defaultSelectedListState = {
     initItemSelected,
     initPickedSelectionItem,
     isDone: false,
+    announcement: Constants.PLEASE_FILL_POSITION,
 }
 
 //Get new state when touch on selected item
@@ -36,18 +37,28 @@ function getNewStateFromSelectedItem(state, id) {
 function getNewStateFromSelectionItem(state, item) {
     const newList = getNewSelectedList(state.selectedList, item);
 
-    //Verify currentSelectedList with WordList
+    //Compare currentSelectedList with WordList to show Done button
     let isEqual = true;
+    let allPositionsSelected = true;
     for (let i = 0; i < Constants.wordList.length; i++) {
         if (newList[i].id !== newList[i].selectedId) {
             isEqual = false;
         }
+
+        if(newList[i].selectedId === ""){
+            allPositionsSelected = false;
+        }
+    }
+    let newAnnouncement = Constants.PLEASE_FILL_POSITION;
+    if(isEqual == false && allPositionsSelected){
+        newAnnouncement = Constants.PLEASE_REVIEW_AND_FIX_LIST;
     }
 
     let newState = {
         ...state,
         selectedList: newList,
         isDone: isEqual,
+        announcement: newAnnouncement,
     }
 
     return newState;
@@ -122,6 +133,7 @@ function resetSelectedList(state) {
         ...state,
         selectedList: initSelectedList(Constants.wordList),
         isDone: false,
+        announcement: Constants.PLEASE_FILL_POSITION,
     }
 }
 

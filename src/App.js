@@ -29,7 +29,7 @@ const AppStack = StackNavigator(
         },
     },
     {
-        initialRouteName: 'Confirmation',
+        initialRouteName: 'Home',
     }
 )
 

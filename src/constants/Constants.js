@@ -61,4 +61,6 @@ export default {
     CHANGE_SELECTION_LIST: 'CHANGE_SELECTION_LIST', 
     NOTIFY_SCROLLING: 'NOTIFY_SCROLLING',
     HEIGHT_OF_ITEM_SELECTED_VIEW: 50,
+    PLEASE_FILL_POSITION: 'Please fill each position with correct word',
+    PLEASE_REVIEW_AND_FIX_LIST: 'Please review and fix the list of words',
 }
