@@ -41,7 +41,7 @@ function getNewStateFromSelectionItem(state, item) {
     let isEqual = true;
     let currentIndexSelected = 0;
     for (let i = 0; i < Constants.wordList.length; i++) {
-        if (newList[i].id !== newList[i].selec) {
+        if (newList[i].id !== newList[i].selectedId) {
             isEqual = false;
         }
 
@@ -96,6 +96,7 @@ function resetSelectedList(state){
     return {
         ...state,
         selectedList: initSelectedList(Constants.wordList),
+        isDone: false,
     }
 }
 

@@ -1,25 +1,63 @@
+import RandomWords from 'random-words';
+
+//This section used for SelectionList view
 export const initSelectionList = (originalList) => {
-    let newList = [];
-    let count = originalList.length;
+    newList = [];
 
-    originalList.forEach(element => {
-        let item1 = initializeSelectionItem(element.id, element.name);
-        newList.push(item1);
-
-        if(element.name.length > 1){
-            count++;
-            let item2 = initializeSelectionItem(count, getRandomName(element.name));
-            newList.push(item2);
-        }
-    
+    //Create category base on default word list
+    defautlWordList = originalList.slice(0);
+    defautlWordList.forEach(element => {
+        item = initParentSelectionItem(element.id, element.name, []);
+        newList.push(item);
     });
 
-    newList.sort((a, b) => {
-        return a.name > b.name ? 1 : -1;
-    })
+    //Create random words
+    newList.forEach(element => {
+
+        let words = RandomWords(11);
+        words.filter(word => element.mainName != word);
+
+        let nextIndex = defautlWordList.length;
+        words = words.map(function (word, i) {
+            nextIndex++;
+            return {
+                id: nextIndex,
+                name: word,
+            }
+        });
+
+        //Push original item to current ramdom words
+        words.push({
+            id: element.id,
+            name: element.mainName,
+        })
+
+        words.sort((a, b) => {
+            return a.name > b.name ? 1 : -1;
+        })
+
+        element.datas = words;
+
+
+    });
+
+
     return newList;
 }
 
+function initParentSelectionItem(id, mainName, datas){
+    return {
+        id,
+        mainName,
+        datas,
+    }
+}
+
+////////////////////////////////////////////////////////////
+
+
+
+//This section is used for SelectedList view
 export const initSelectedList = (originalList) => {
     let newList = [];
     originalList.forEach(element => {
@@ -33,12 +71,13 @@ export const initSelectedList = (originalList) => {
             name: "",
             isSelected: false,
         }
-        
+
         newList.push(item);
     });
 
     return newList;
 }
+
 
 export const initItemSelected = () => {
     return {
@@ -53,6 +92,7 @@ export const initPickedSelectionItem = () => {
         name: '',
     }
 }
+////////////////////////////////////////////////////////////////////////
 
 
 function initializeSelectionItem(id, name) {
@@ -62,31 +102,10 @@ function initializeSelectionItem(id, name) {
     }
 }
 
-function getRandomName(originalName) {
-    let maxLength = originalName.length;
-    if(maxLength <= 1){
-        return originalName;
-    }
-    
-    let index1 = Math.floor(Math.random() * (maxLength / 2));
-    let index2 = Math.floor(maxLength / 2 + Math.random() * (maxLength - maxLength / 2));
 
-    let wordList = originalName.split("");
-    let tmp = wordList[index1];
-    wordList[index1] = wordList[index2];
-    wordList[index2] = tmp;
-
-    let newWord = wordList.join('');
-    if (newWord === originalName) {
-        return getRandomName(originalName);
-    }
-    return wordList.join('');
-
-}
-
-export function chunkList(list, chunk){
+export function chunkList(list, chunk) {
     newList = [];
-    while(list.length > 0){
+    while (list.length > 0) {
         newList.push(list.splice(0, chunk));
     }
 

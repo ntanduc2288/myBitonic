@@ -1,62 +1,9 @@
 import Constants from 'src/constants/Constants';
-import RandomWords from 'random-words';
+import { initSelectionList } from 'src/utils/Utils'
 
-function initParentItem(id, mainName, datas){
-    return {
-        id,
-        mainName,
-        datas,
-    }
-}
-
-
-//Create random list based on WordList
-function initDefaultList() {
-    wordList = Constants.wordList.slice(0);
-    newList = [];
-    wordList.forEach(element => {
-        item = initParentItem(element.id, element.name, []);
-        newList.push(item);
-    });
-
-    newList.forEach(element => {
-
-        words = RandomWords(11);
-        words.filter(word => element.mainName != word);
-
-        let nextIndex = wordList.length;
-        words = words.map(function(word, i) {
-            nextIndex++;
-            return {
-                id: nextIndex,
-                name: word,
-            }
-        });
-
-        test = words;
-
-        words.push({
-            id: element.id,
-            name: element.mainName,
-        })
-
-        words.sort((a, b) => {
-            return a.name > b.name ? 1 : -1;
-        })
-
-        element.datas = words;
-        
-
-    });
-
-    // alert(JSON.stringify(newList))
-
-    return newList;
-
-}
-
+const defautlSelectionList = initSelectionList(Constants.wordList);
 const defaultState = {
-    parentList: initDefaultList(),
+    parentList: defautlSelectionList,
     childList: [],
 }
 
